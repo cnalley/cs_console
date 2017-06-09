@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="us">
+  <head>
+    <meta charset="utf-8">
+    <title>Terminal Tutorial</title>
+    <link href="octogit.css" rel="stylesheet">
+    //this is codemirror.css
+    <link href="https://d13jv82ekraqyq.cloudfront.net/assets/application-8c99a6177b53973aec4c34bb07a79157.css" rel="stylesheet">
+    <script src="cs_console.js"></script>
+  </head>
+  <body>
+<div id='challenge'>
+<section id='challenge-panels'>
+<div class='inner'>
+<div class='toolbar'>
+<ul class='controls'>
+<li>
+<a href="#" class="close">Close</a>
+</li>
+<li>
+<a href="#" class="minimize">Minimize</a>
+</li>
+<li>
+<a href="#" class="maximize">Maximize</a>
+</li>
+</ul>
+<div class='title'>
+<span class='title-console'>OctoGit</span>
+</div>
+</div>
+  
+<div class='panel-group editor-reference' id='editor-group'>
+  <div class="panel-group editor-reference active" id="editor-group"><div class="editor console panel cs-console cs-console-height cs-console-width active editor-active" id="editor1"><div class="CodeMirror cm-s-vibrant-ink CodeMirror-wrap cs-console-height cs-console-width"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 15px; left: 244.625px;"><textarea autocorrect="off" autocapitalize="off" tabindex="0" style="position: absolute; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-hscrollbar" style="left: 0px;"><div style="height: 1px;"></div></div><div class="CodeMirror-vscrollbar" style="bottom: 0px;"><div style="width: 1px; height: 8px;"></div></div><div class="CodeMirror-scrollbar-filler"></div><div class="CodeMirror-scroll cs-console-height" tabindex="-1"><div style="position: relative; min-height: 100%;"><div class="CodeMirror-sizer" style="min-height: 65px; margin-left: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines">
+    </div>
+    </div>
+    <div>
+    <div id='console'></div>
+    </div>
+
+    <script>
+      var el = document.getElementById('console');
+      window.cs_console = new CSConsole(el,{
+        prompt: '> ',
+        historyLabel: 'cs-console-terminal',
+        syntax: 'shell',
+        //initialValue: "This is starting content\nalong with multi-lines!\n",
+        welcomeMessage: 'What\'s the meaning of life, the universe, and everything?',
+        autoFocus: true,
+        theme: 'vibrant-ink',
+        commandValidate: function(line){
+          return line.length > 0
+        },
+        commandHandle: function(line, report, prompt){
+          /*
+            We aren't doing anything with the console input.
+
+            This is where you might send the input to the server and get a response
+            for example, an irb response or you could eval javascript here.
+          */
+          try {
+            //var content = eval.call(this,line)
+            //trim any leading or trailing white spaces
+            var content = "No!";
+            
+            if (line.trim() == "42"){
+                content = "Yes!";
+            }
+          } catch(e){
+            var content = e.message
+          }
+          report({content: (content ? content.toString() : '')})
+        }
+      });
+    </script>
+  </body>
+</html>
